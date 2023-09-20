@@ -15,7 +15,7 @@ path_to_sort=fullfile('');
 if read_and_write
     % The path where CSC files are located at.
     paths_to_read{1,:}='X:\PIG_ARCHIVE_AND_SOPS\PIG_ARCHIVE\JAW_102_23\2_EPHYS_and_BEHAVIOR_DATA\BEHAVIOR\Track_DATA\5-26-23\2023-05-26_10-50-05';
-    % The extension of CSC files. Use '' if they do not have any.
+    % The extension of CSC files. Use "" if they do not have any.
     extensions{1}="";
     % Channels to read.
     channels=1:128;
