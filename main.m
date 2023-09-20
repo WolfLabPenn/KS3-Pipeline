@@ -33,7 +33,7 @@ if create_electrode
     % Bad channels. If none or you do not care, use bad_channels=[];
     bad_channels=[1,4,10,16,18,20,22,24,28,30,32,34,36,44,46];
     % x coordinates of channels with the same order listed in map 
-    x=zeros(16,1); % Linear electrode
+    x=zeros(128,1); % Linear electrode
     % y coordinates of channels with the same order listed in map 
     y=0:-40:-40*127; % Linear electrode with spacing of 40 um.
     % Calling the function that creates the channel map
