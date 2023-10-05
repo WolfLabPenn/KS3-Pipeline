@@ -10,7 +10,19 @@ create_electrode=true; % The flag that controls generating electrode map
 create_config=true; % The flag that controls generating config file
 sort_units=true; % The flag that controls calling KS3.
 %% The folder where all the resutls are saved.
-path_to_sort=fullfile('');
+path_to_sort=fullfile('your_path_to_save_data');
+[status,msg,msgID]=mkdir(path_to_sort);
+temp=clock;
+copyfile('main.m', [path_to_sort,'/main_',char(datetime('today')),'_',num2str(temp(4)),'_',num2str(temp(5)),'.m'], 'f');
+if ~isempty(msg)
+    warning(msg)
+    answer = questdlg({msg;'Do you want to continue?'},'Warning','Yes','No','No');
+    if strcmp(answer,'No')
+        return;
+    else
+        warning('Potential overwriting of data. Please manually stop the code if you chose to continue by accident');
+    end
+end
 %% Generating the binary file
 if read_and_write
     % The path where CSC files are located at.
@@ -36,6 +48,12 @@ if create_electrode
     x=zeros(128,1); % Linear electrode
     % y coordinates of channels with the same order listed in map 
     y=0:-40:-40*127; % Linear electrode with spacing of 40 um.
+    %map_name='ASSY-77-E-1_Shank_2';
+    %remap=[21,22,23,28,24,32,30,26,29,25,16,17,18,19,20,27,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,31,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,34,44,43,42,37,41,33,35,39,36,40,49,48,47,46,45,38];
+    %[x,y,id]=read_probe('./Probes/ASSY-77-E-1.json',remap=remap,plot=false);
+    %x=x(17:32);
+    %y=y(17:32);
+    %map=1:16;
     % Calling the function that creates the channel map
     create_channel_map(map,bad_channels,x,y,map_name,path_to_sort);
 end
